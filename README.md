@@ -14,6 +14,7 @@ It is time to play more in depth with rack.
   - unit
   - integration
 - flash
+- logging
 
 Nice to have:
 

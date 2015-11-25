@@ -8,7 +8,15 @@ application = MyApplication.new(self) do |rack, app|
   app.router do |router|
     router.get '/users' => Proc.new do |env|
       klass = UsersController
-      application.dependencies.with_evinronment(env).fetch(klass).index
+      app.dependencies.with_evinronment(env).fetch(klass).index
+    end
+  end
+
+  app.router do |router|
+    router.get '/users/:id' => Proc.new do |env|
+      app.dependencies.with(env: env) do
+        fetch(UsersController)
+      end.dispatch(:show)
     end
   end
 
